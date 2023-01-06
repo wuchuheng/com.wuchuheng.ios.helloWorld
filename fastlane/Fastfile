@@ -15,11 +15,16 @@
 
 default_platform(:ios)
 
+
+desc "Download certificates from the git"
+lane :syncCertificates do
+    match(type: "appstore")
+    match(type: "development")
+end
+
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    get_certificates           # invokes cert
-    get_provisioning_profile 
     increment_build_number(xcodeproj: "wuchuheng.xcodeproj")
     build_app(scheme: "wuchuheng")
     upload_to_testflight
