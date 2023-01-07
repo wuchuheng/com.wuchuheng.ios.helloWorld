@@ -1,2 +1,5 @@
 *.zip
 *.ipa
+.idea
+fastlane/.env
+tmp
