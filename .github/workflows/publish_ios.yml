@@ -15,8 +15,8 @@ jobs:
 #        run: brew update && brew install fastlane
       - name: Configure .env
         run: |
-          cat > fastlane/.env <<EOL
-          ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
+          cat >> fastlane/.env <<EOL
+          APP_STORE_CONNECT_API_KEY_CONTENT="${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}"
           EOL
       - run: cat fastlane/.env
 
