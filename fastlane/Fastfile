@@ -109,7 +109,7 @@ platform :ios do
 
     gym(
       configuration: "Release",
-#       workspace: "wuchuheng",
+#       workspace: "wuchuheng.xcworkspace",
       scheme: "wuchuheng",
       export_method: "app-store",
       output_name: "wuchuheng.ipa",
@@ -125,7 +125,7 @@ platform :ios do
       app_identifier: "#{APP_IDENTIFIER}",
       skip_waiting_for_build_processing: true,
       api_key: api_key,
-#       skip_submission: true,
+      skip_submission: true,
       distribute_external: false,
       notify_external_testers: false,
       ipa: "./wuchuheng.ipa"

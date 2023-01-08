@@ -5,52 +5,47 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000456">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000272">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: app_store_connect_api_key" time="0.060682">
+      <testcase classname="fastlane.lanes" name="1: app_store_connect_api_key" time="0.011791">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: delete_keychain" time="0.028623">
+      <testcase classname="fastlane.lanes" name="2: delete_keychain" time="0.025225">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: create_keychain" time="0.118352">
+      <testcase classname="fastlane.lanes" name="3: create_keychain" time="0.106994">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: match" time="2.081653">
+      <testcase classname="fastlane.lanes" name="4: match" time="2.590082">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="1.177845">
+      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="1.211373">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: increment_build_number" time="1.095241">
+      <testcase classname="fastlane.lanes" name="6: gym" time="23.937049">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: gym" time="13.259964">
+      <testcase classname="fastlane.lanes" name="7: pilot" time="35.690423">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: pilot" time="31.158777">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="9: delete_keychain" time="0.026939">
+      <testcase classname="fastlane.lanes" name="8: delete_keychain" time="0.028665">
         
       </testcase>
     
