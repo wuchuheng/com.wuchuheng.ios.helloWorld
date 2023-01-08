@@ -59,8 +59,10 @@ jobs:
       - run: cat fastlane/.env
       - name: Install fastlane
         run: |
-          brew install fastlane;
+          brew install fastlane@2.211.0;
           fastlane --version;
+      - name: Deploy iOS Beta to TestFlight via Fastlane
+        run: fastlane closed_beta
 
 #      - name: Deploy iOS Beta to TestFlight via Fastlane
 #        uses: maierj/fastlane-action@v1.4.0
