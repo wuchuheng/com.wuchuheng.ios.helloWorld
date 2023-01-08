@@ -24,8 +24,20 @@ api_key = app_store_connect_api_key(
 
 desc "Download certificates from the git"
 lane :syncCertificates do
-    match(api_key: api_key, type: "appstore", readonly: true)
-    match(api_key: api_key, type: "development", readonly: true)
+    match(
+        api_key: api_key,
+        type: "appstore",
+        readonly: true,
+        git_basic_authorization: Base64.strict_encode64(ENV["GIT_AUTHORIZATION"]),
+        keychain_password: ENV["MATCH_PASSWORD"]
+     )
+    match(
+       api_key: api_key,
+       type: "development",
+       readonly: true,
+       git_basic_authorization: Base64.strict_encode64(ENV["GIT_AUTHORIZATION"]),
+       keychain_password: ENV["MATCH_PASSWORD"]
+   )
 end
 
 platform :ios do
