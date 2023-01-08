@@ -11,9 +11,9 @@ jobs:
     steps:
       - name: Check out from git
         uses: actions/checkout@v2
-#      - name: Install fastlane
-#        run: brew update && brew install fastlane
-      - name: Configure .env
+      - name: Install fastlane
+        run: brew update && brew install fastlane
+      - name: Config fastlane .env
         run: |
           cat >> fastlane/.env <<EOL
           APP_STORE_CONNECT_API_KEY_CONTENT="${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}"
@@ -35,7 +35,8 @@ jobs:
           EOL
 
       - run: cat fastlane/.env
-
+      - name: Sync Certificates from git.
+        run: fastlane syncCertificates
 #      - name: Fleep Updates
 #          if: always()
 #          uses: dawidd6/action-send-mail@v2
