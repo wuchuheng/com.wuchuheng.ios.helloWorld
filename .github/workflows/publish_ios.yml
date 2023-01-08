@@ -18,6 +18,22 @@ jobs:
           cat >> fastlane/.env <<EOL
           APP_STORE_CONNECT_API_KEY_CONTENT="${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}"
           EOL
+          cat >> fastlane/.env <<EOL
+          APP_STORE_CONNECT_API_ISSUER_ID="${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}"
+          EOL
+          cat >> fastlane/.env <<EOL
+          APP_STORE_CONNECT_API_KEY_ID="${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}"
+          EOL
+          cat >> fastlane/.env <<EOL
+          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD="${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}"
+          EOL
+          cat >> fastlane/.env <<EOL
+          MATCH_PASSWORD="${{ secrets.MATCH_PASSWORD }}"
+          EOL
+          cat >> fastlane/.env <<EOL
+          GIT_AUTHORIZATION="${{ secrets.GIT_AUTHORIZATION }}"
+          EOL
+
       - run: cat fastlane/.env
 
 #      - name: Fleep Updates
