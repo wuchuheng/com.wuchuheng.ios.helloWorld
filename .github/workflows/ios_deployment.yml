@@ -8,7 +8,7 @@ on:
 jobs:
   deploy_ios:
     name: Deploy build to TestFlight
-    runs-on: macos-12
+    runs-on: macos-latest
     steps:
       - name: Checkout code from ref
         uses: actions/checkout@v2
@@ -57,17 +57,8 @@ jobs:
 #          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD="${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}"
 #          EOL
       - run: cat fastlane/.env
-      - run: sudo rm -rf /Library/Developer/CommandLineTools
-      - run: xcode-select --install
-      - name: Install fastlane
-        run: |
-          brew update;
-          brew install fastlane;
-          fastlane --version;
-      - name: Deploy iOS Beta to TestFlight via Fastlane
-        run: fastlane closed_beta
-
 #      - name: Deploy iOS Beta to TestFlight via Fastlane
 #        uses: maierj/fastlane-action@v1.4.0
 #        with:
 #          lane: closed_beta
+      - run: fastlane beta
