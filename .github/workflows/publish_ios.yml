@@ -11,11 +11,6 @@ jobs:
     steps:
       - name: Check out from git
         uses: actions/checkout@v2
-      # Configure ruby according to our .ruby-version
-      - name: Setup ruby & Bundler
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
       - name: Deploy iOS Beta to TestFlight via Fastlane
         uses: maierj/fastlane-action@v1.4.0
         with:
