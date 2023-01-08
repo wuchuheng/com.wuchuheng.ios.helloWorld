@@ -11,32 +11,13 @@ jobs:
     steps:
       - name: Check out from git
         uses: actions/checkout@v2
-      - name: Install fastlane
-        run: brew update && brew install fastlane
-      - name: Config fastlane .env
-        run: |
-          cat >> fastlane/.env <<EOL
-          APP_STORE_CONNECT_API_KEY_CONTENT="${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}"
-          EOL
-          cat >> fastlane/.env <<EOL
-          APP_STORE_CONNECT_API_ISSUER_ID="${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}"
-          EOL
-          cat >> fastlane/.env <<EOL
-          APP_STORE_CONNECT_API_KEY_ID="${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}"
-          EOL
-          cat >> fastlane/.env <<EOL
-          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD="${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}"
-          EOL
-          cat >> fastlane/.env <<EOL
-          MATCH_PASSWORD="${{ secrets.MATCH_PASSWORD }}"
-          EOL
-          cat >> fastlane/.env <<EOL
-          GIT_AUTHORIZATION="${{ secrets.GIT_AUTHORIZATION }}"
-          EOL
-
-      - run: cat fastlane/.env
-      - name: Sync Certificates from git.
-        run: fastlane syncCertificates
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+      - uses: maierj/fastlane-action@v3.0.0
+        with:
+          lane: 'beta'
 #      - name: Fleep Updates
 #          if: always()
 #          uses: dawidd6/action-send-mail@v2
