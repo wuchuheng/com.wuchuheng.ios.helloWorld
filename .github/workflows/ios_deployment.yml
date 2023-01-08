@@ -57,7 +57,12 @@ jobs:
           FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD="${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}"
           EOL
       - run: cat fastlane/.env
-      - name: Deploy iOS Beta to TestFlight via Fastlane
-        uses: maierj/fastlane-action@v1.4.0
-        with:
-          lane: closed_beta
+      - name: Install fastlane
+        run: |
+          brew install fastlane;
+          fastlane --version;
+
+#      - name: Deploy iOS Beta to TestFlight via Fastlane
+#        uses: maierj/fastlane-action@v1.4.0
+#        with:
+#          lane: closed_beta
