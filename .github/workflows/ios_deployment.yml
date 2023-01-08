@@ -57,6 +57,7 @@ jobs:
 #          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD="${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}"
 #          EOL
       - run: cat fastlane/.env
+      - run: sudo rm -rf /Library/Developer/CommandLineTools
       - run: xcode-select --install
       - name: Install fastlane
         run: |
