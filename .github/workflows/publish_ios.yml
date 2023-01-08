@@ -14,7 +14,7 @@ jobs:
       - name: Install fastlane
         run: brew update && brew install fastlane
       - name: Configure .env
-        run: cat ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }} >> fastlane/.env
+        run: echo -e ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }} >> fastlane/.env
       - run: cat fastlane/.env
 
 #      - name: Fleep Updates
