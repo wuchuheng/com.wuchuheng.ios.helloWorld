@@ -28,6 +28,7 @@ jobs:
           lane: beta
         env:
           FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: '${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}'
+          APP_STORE_CONNECT_API_KEY_ID: '${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}'
 #      - name: Fleep Updates
 #          if: always()
 #          uses: dawidd6/action-send-mail@v2
