@@ -11,26 +11,8 @@ jobs:
     steps:
       - name: Check out from git
         uses: actions/checkout@v2
-      - name: Synchronization Certificate
-        uses: maierj/fastlane-action@v1.4.0
-        with:
-          lane: syncCertificates
-        env:
-          APP_STORE_CONNECT_API_KEY_CONTENT: '${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}'
-          APP_STORE_CONNECT_API_ISSUER_ID: '${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}'
-          GIT_AUTHORIZATION: '${{ secrets.GIT_AUTHORIZATION }}'
-          APP_STORE_CONNECT_API_KEY_ID: '${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}'
-          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: '${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}'
-          MATCH_PASSWORD: '${{ secrets.MATCH_PASSWORD }}'
-      - name: Deploy iOS Beta to TestFlight via Fastlane
-        uses: maierj/fastlane-action@v1.4.0
-        with:
-          lane: beta
-        env:
-          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: '${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}'
-          APP_STORE_CONNECT_API_KEY_CONTENT: '${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}'
-          APP_STORE_CONNECT_API_ISSUER_ID: '${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}'
-          APP_STORE_CONNECT_API_KEY_ID: '${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}'
+      - name: Install fastlane
+        run: brew update && brew install fastlane
 #      - name: Fleep Updates
 #          if: always()
 #          uses: dawidd6/action-send-mail@v2
