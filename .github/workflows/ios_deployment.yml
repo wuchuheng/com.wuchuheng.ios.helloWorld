@@ -61,7 +61,14 @@ jobs:
         run: |
           brew install fastlane;
           fastlane --version;
+      - name: Install ruby-build
+        run: brew install rbenv ruby-build
+      - run: rbenv install -l
+      - run: rbenv install 2.7.5
+      - run: rbenv global 2.7.5
+      - run: rbenv local 2.7.5
       - name: xcode-select --install
+
         run: |
           sudo rm -rf /Library/Developer/CommandLineTools;
           xcode-select --install;
