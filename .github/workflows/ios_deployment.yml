@@ -23,6 +23,7 @@ jobs:
       - run: cat ~/.bashrc
       - run: source ~/.bash_profile
       - run: |
+          eval "$(~/.rbenv/bin/rbenv init - bash)";
           rbenv install -l;
           rbenv install 2.7.5;
           rbenv global 2.7.5;
@@ -30,7 +31,6 @@ jobs:
       - name: Show rbenv versions
         run: |
           rbenv versions
-
       #      - name: Configure env
 #        run: |
 #          envFile="fastlane/.env"
