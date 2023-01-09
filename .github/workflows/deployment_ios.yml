@@ -23,12 +23,6 @@ jobs:
           GIT_AUTHORIZATION="${{ secrets.GIT_AUTHORIZATION }}"
           EOL
           cat $envFile
-#      - name: Install rbenv
-#        run: brew install ruby-build
-#      - run: rbenv install 2.7.5
-#      - run: brew install fastlane
-#      - run: fastlane syncCertificates
-#      - run: fastlane beta
       - name: Sync Certificates.
         uses: maierj/fastlane-action@v1.4.0
         with:
