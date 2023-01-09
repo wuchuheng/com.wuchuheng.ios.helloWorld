@@ -17,10 +17,13 @@ jobs:
       - run: |
           git clone https://github.com/rbenv/rbenv.git ~/.rbenv;
           echo 'eval "$(~/.rbenv/bin/rbenv init - bash)"' >> ~/.bashrc;
+          source ~/.bashrc;
           rbenv install -l;
           rbenv install 2.7.5;
           rbenv global 2.7.5;
           rbenv local 2.7.5;
+      - name: Show rbenv versions
+        run: rbenv versions
 
       #      - name: Configure env
 #        run: |
