@@ -21,6 +21,7 @@ jobs:
           rbenv install 2.7.5;
           rbenv global 2.7.5;
           rbenv local 2.7.5;
+
       #      - name: Configure env
 #        run: |
 #          envFile="fastlane/.env"
