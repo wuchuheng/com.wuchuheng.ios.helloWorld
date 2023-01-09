@@ -14,7 +14,13 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
-#      - name: Configure env
+      - name: Install ruby.
+        run: |
+          git clone https://github.com/rbenv/rbenv.git ~/.rbenv;
+          echo 'eval "$(~/.rbenv/bin/rbenv init - bash)"' >> ~/.bashrc
+          rbenv install -l
+
+      #      - name: Configure env
 #        run: |
 #          envFile="fastlane/.env"
 #          cat >> $envFile  <<EOL
@@ -56,9 +62,9 @@ jobs:
 #          cat >> $envFile  <<EOL
 #          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD="${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}"
 #          EOL
-      - run: cat fastlane/.env
+#      - run: cat fastlane/.env
 #      - name: Deploy iOS Beta to TestFlight via Fastlane
 #        uses: maierj/fastlane-action@v1.4.0
 #        with:
 #          lane: closed_beta
-      - run: fastlane beta
+#      - run: fastlane beta
