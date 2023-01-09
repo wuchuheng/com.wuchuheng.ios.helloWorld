@@ -10,24 +10,13 @@ jobs:
     name: Deploy build to TestFlight
     runs-on: macos-latest
     steps:
-      - name: Checkout code from ref
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
         with:
-          ref: ${{ github.ref }}
-      - name: Install buby-build
-        run: brew install ruby-build;
-      - name: Clone rbenv to local
-        run: git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-      - run: echo 'eval "$(~/.rbenv/bin/rbenv init - bash)"' >> ~/.bashrc
-      - run: source ~/.bashrc
-      - run: |
-          eval "$(~/.rbenv/bin/rbenv init - bash)";
-          rbenv install -l;
-          rbenv install 2.7.5;
-          rbenv global 2.7.5;
-          rbenv local 2.7.5;
-      - name: Show rbenv versions
-        run: rbenv versions
+          ruby-version: '3.0' # Not needed with a .ruby-version file
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      - run: bundle exec rake
+      - run: ruby --version
 
       #      - name: Configure env
 #        run: |
