@@ -15,7 +15,7 @@ jobs:
         with:
           ref: ${{ github.ref }}
       - name: Install buby-build
-        rund: brew install ruby-build;
+        run: brew install ruby-build;
       - run: |
           rbenv install -l;
           rbenv install 2.7.5;
