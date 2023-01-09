@@ -45,7 +45,8 @@ platform :ios do
 
     increment_build_number(xcodeproj: "wuchuheng.xcodeproj")
     build_app(
-      scheme: "wuchuheng"
+      scheme: "wuchuheng",
+      disable_xcpretty: ""
     )
 #     upload_to_testflight
   end
