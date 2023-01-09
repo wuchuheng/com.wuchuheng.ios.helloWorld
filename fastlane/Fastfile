@@ -1,27 +1,35 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
-
 default_platform(:ios)
 
+api_key = app_store_connect_api_key(
+    key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
+    issuer_id: ENV["APP_STORE_CONNECT_API_ISSUER_ID"],
+    key_content: ENV["APP_STORE_CONNECT_API_KEY_CONTENT"]
+)
+
 platform :ios do
+    desc "Download certificates from the git"
+    lane :syncCertificates do
+        match(
+            api_key: api_key,
+            type: "appstore",
+#             readonly: true,
+            git_basic_authorization: Base64.strict_encode64(ENV["GIT_AUTHORIZATION"]),
+            keychain_password: ENV["MATCH_PASSWORD"]
+         )
+        match(
+           api_key: api_key,
+           type: "development",
+#            readonly: true,
+           git_basic_authorization: Base64.strict_encode64(ENV["GIT_AUTHORIZATION"]),
+           keychain_password: ENV["MATCH_PASSWORD"]
+       )
+    end
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    get_certificates           # invokes cert
-    get_provisioning_profile 
     increment_build_number(xcodeproj: "wuchuheng.xcodeproj")
-    build_app(scheme: "wuchuheng")
-    upload_to_testflight
+    build_app(
+      scheme: "wuchuheng"
+    )
+#     upload_to_testflight
   end
 end
