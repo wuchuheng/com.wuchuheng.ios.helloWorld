@@ -20,6 +20,7 @@ jobs:
       - name: Clone rbenv to local
         run: git clone https://github.com/rbenv/rbenv.git ~/.rbenv
       - run: echo 'eval "$(~/.rbenv/bin/rbenv init - bash)"' >> ~/.bash_profile
+      - run: cat ~/.bash_profile
       - run: source ~/.bash_profile
       - run: |
           rbenv install -l;
