@@ -14,11 +14,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
+      - name: Install buby-build
+        rund: brew install ruby-build;
       - run: |
-          git clone https://github.com/rbenv/rbenv.git ~/.rbenv;
-          echo 'eval "$(~/.rbenv/bin/rbenv init - bash)"' >> ~/.bashrc;
-          source ~/.bashrc;
-          brew install ruby-build;
           rbenv install -l;
           rbenv install 2.7.5;
           rbenv global 2.7.5;
