@@ -48,6 +48,7 @@ platform :ios do
       scheme: "wuchuheng",
       xcodebuild_formatter: ""
     )
+
     upload_to_testflight
   end
 end
