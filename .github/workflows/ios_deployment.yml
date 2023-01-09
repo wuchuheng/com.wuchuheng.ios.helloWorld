@@ -68,13 +68,13 @@ jobs:
       - run: rbenv global 2.7.5
       - run: rbenv local 2.7.5
       - name: xcode-select --install
-
         run: |
           sudo rm -rf /Library/Developer/CommandLineTools;
           xcode-select --install;
       - name: Sync certificates
         run: |
           fastlane syncCertificates;
+          fastlane env;
           security find-identity -v -p codesigning;
           fastlane closed_beta;
 #      - name: Deploy iOS Beta to TestFlight via Fastlane
