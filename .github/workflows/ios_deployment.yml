@@ -16,6 +16,10 @@ jobs:
           ref: ${{ github.ref }}
       - name: Install buby-build
         run: brew install ruby-build;
+      - name: Clone rbenv to local
+        run: git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+      - run: echo 'eval "$(~/.rbenv/bin/rbenv init - bash)"' >> ~/.bashrc
+      - run: source ~/.bashrc
       - run: |
           rbenv install -l;
           rbenv install 2.7.5;
