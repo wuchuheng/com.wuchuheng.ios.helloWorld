@@ -19,17 +19,15 @@ jobs:
         run: brew install ruby-build;
       - name: Clone rbenv to local
         run: git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-      - run: echo 'eval "$(~/.rbenv/bin/rbenv init - bash)"' >> ~/.bashrc
-      - run: source ~/.bashrc
+      - run: echo 'eval "$(~/.rbenv/bin/rbenv init - bash)"' >> ~/.bash_profile
+      - run: source ~/.bash_profile
       - run: |
-          eval "$(~/.rbenv/bin/rbenv init - bash)";
           rbenv install -l;
           rbenv install 2.7.5;
           rbenv global 2.7.5;
           rbenv local 2.7.5;
       - name: Show rbenv versions
         run: |
-          eval "$(~/.rbenv/bin/rbenv init - bash)";
           rbenv versions
 
       #      - name: Configure env
