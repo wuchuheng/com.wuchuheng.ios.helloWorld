@@ -16,10 +16,11 @@ jobs:
           ref: ${{ github.ref }}
       - name: Configure env
         run: |
+          envFile="fastlane/.env"
           cat >> $envFile  <<EOL
           GIT_AUTHORIZATION="${{ secrets.GIT_AUTHORIZATION }}"
           EOL
-
+          cat $envFile
       - name: Sync Certificates.
         uses: maierj/fastlane-action@v1.4.0
         with:
