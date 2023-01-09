@@ -8,76 +8,25 @@ on:
 jobs:
   deploy_ios:
     name: Deploy build to TestFlight
-    runs-on: macos-12
+    runs-on: macOS-latest
     steps:
       - name: Checkout code from ref
         uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
-#      - name: Configure env
-#        run: |
-#          envFile="fastlane/.env"
-#          cat >> $envFile  <<EOL
-#          APP_STORE_CONNECT_API_KEY_CONTENT="${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}"
-#          EOL
-#          cat >> $envFile  <<EOL
-#          APP_STORE_CONNECT_API_ISSUER_ID="${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}"
-#          EOL
-#          cat >> $envFile  <<EOL
-#          APP_STORE_CONNECT_API_KEY_ID="${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}"
-#          EOL
-#          cat >> $envFile  <<EOL
-#          APP_IDENTIFIER="${{ secrets.APP_IDENTIFIER }}"
-#          EOL
-#          cat >> $envFile  <<EOL
-#          GIT_AUTHORIZATION="${{ secrets.GIT_AUTHORIZATION }}"
-#          EOL
-#          cat >> $envFile  <<EOL
-#          DEVELOPER_APP_ID="${{ secrets.DEVELOPER_APP_ID }}"
-#          EOL
-#          cat >> $envFile  <<EOL
-#          PROVISIONING_PROFILE_SPECIFIER="${{ secrets.PROVISIONING_PROFILE_SPECIFIER }}"
-#          EOL
-#          cat >> $envFile  <<EOL
-#          MATCH_PASSWORD="${{ secrets.MATCH_PASSWORD }}"
-#          EOL
-#          cat >> $envFile  <<EOL
-#          TEMP_KEYCHAIN_USER="${{ secrets.TEMP_KEYCHAIN_USER }}"
-#          EOL
-#          cat >> $envFile  <<EOL
-#          FASTLANE_APPLE_ID="${{ secrets.FASTLANE_APPLE_ID }}"
-#          EOL
-#          cat >> $envFile  <<EOL
-#          ITC_TEAM_ID="${{ secrets.ITC_TEAM_ID }}"
-#          EOL
-#          cat >> $envFile  <<EOL
-#          DEVELOPER_PORTAL_TEAM_ID="${{ secrets.DEVELOPER_PORTAL_TEAM_ID }}"
-#          EOL
-#          cat >> $envFile  <<EOL
-#          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD="${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}"
-#          EOL
-      - run: cat fastlane/.env
-      - name: Install fastlane
-        run: |
-          brew install fastlane;
-          fastlane --version;
-      - name: Install ruby-build
-        run: brew install rbenv ruby-build
-      - run: rbenv install -l
-      - run: rbenv install 2.7.5
-      - run: rbenv global 2.7.5
-      - run: rbenv local 2.7.5
-      - name: xcode-select --install
-        run: |
-          sudo rm -rf /Library/Developer/CommandLineTools;
-          xcode-select --install;
-      - name: Sync certificates
-        run: |
-          fastlane syncCertificates;
-          fastlane env;
-          security find-identity -v -p codesigning;
-          fastlane closed_beta;
-#      - name: Deploy iOS Beta to TestFlight via Fastlane
-#        uses: maierj/fastlane-action@v1.4.0
-#        with:
-#          lane: closed_beta
+      - name: Deploy iOS Beta to TestFlight via Fastlane
+        uses: maierj/fastlane-action@v1.4.0
+        with:
+          lane: closed_beta
+        env:
+          APP_STORE_CONNECT_TEAM_ID: '${{ secrets.APP_STORE_CONNECT_TEAM_ID }}'
+          DEVELOPER_APP_ID: '${{ secrets.DEVELOPER_APP_ID }}'
+          DEVELOPER_APP_IDENTIFIER: '${{ secrets.DEVELOPER_APP_IDENTIFIER }}'
+          DEVELOPER_PORTAL_TEAM_ID: '${{ secrets.DEVELOPER_PORTAL_TEAM_ID }}'
+          FASTLANE_APPLE_ID: '${{ secrets.FASTLANE_APPLE_ID }}'
+          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: '${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}'
+          MATCH_PASSWORD: '${{ secrets.MATCH_PASSWORD }}'
+          GIT_AUTHORIZATION: '${{ secrets.GIT_AUTHORIZATION }}'
+          PROVISIONING_PROFILE_SPECIFIER: '${{ secrets.PROVISIONING_PROFILE_SPECIFIER }}'
+          TEMP_KEYCHAIN_PASSWORD: '${{ secrets.TEMP_KEYCHAIN_PASSWORD }}'
+          TEMP_KEYCHAIN_USER: '${{ secrets.TEMP_KEYCHAIN_USER }}'
