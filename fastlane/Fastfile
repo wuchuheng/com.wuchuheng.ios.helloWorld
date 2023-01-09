@@ -105,34 +105,33 @@ platform :ios do
     )
 
     increment_build_number(xcodeproj: "wuchuheng.xcodeproj")
-    increment_build_number(xcodeproj: "wuchuheng.xcodeproj")
-    increment_build_number(xcodeproj: "wuchuheng.xcodeproj")
 #     build_app(scheme: "wuchuheng")
 
-    gym(
-      configuration: "Release",
-#       workspace: "wuchuheng.xcworkspace",
-      scheme: "wuchuheng",
-      export_method: "app-store",
-      output_name: "wuchuheng.ipa",
-      export_options: {
-        provisioningProfiles: {
-            DEVELOPER_APP_ID => PROVISIONING_PROFILE_SPECIFIER
-        }
-      }
-    )
-
-    pilot(
-      apple_id: "#{DEVELOPER_APP_ID}",
-      app_identifier: "#{APP_IDENTIFIER}",
-      skip_waiting_for_build_processing: true,
-      api_key: api_key,
-      skip_submission: true,
-      distribute_external: false,
-      notify_external_testers: false,
-      ipa: "./wuchuheng.ipa"
-    )
-
+#     gym(
+#       configuration: "Release",
+# #       workspace: "wuchuheng.xcworkspace",
+#       scheme: "wuchuheng",
+#       export_method: "app-store",
+#       output_name: "wuchuheng.ipa",
+#       export_options: {
+#         provisioningProfiles: {
+#             DEVELOPER_APP_ID => PROVISIONING_PROFILE_SPECIFIER
+#         }
+#       }
+#     )
+#
+#     pilot(
+#       apple_id: "#{DEVELOPER_APP_ID}",
+#       app_identifier: "#{APP_IDENTIFIER}",
+#       skip_waiting_for_build_processing: true,
+#       api_key: api_key,
+#       skip_submission: true,
+#       distribute_external: false,
+#       notify_external_testers: false,
+#       ipa: "./wuchuheng.ipa"
+#     )
+    build_app
+    upload_to_testflight(skip_waiting_for_build_processing: true)
     delete_temp_keychain(keychain_name)
   end
 end
