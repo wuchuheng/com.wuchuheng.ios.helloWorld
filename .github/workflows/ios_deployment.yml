@@ -61,6 +61,8 @@ jobs:
         run: |
           brew install fastlane;
           fastlane --version;
+      - name: Sync certificates
+        run: fastlane syncCertificates
       - name: Deploy iOS Beta to TestFlight via Fastlane
         run: fastlane closed_beta
 
