@@ -61,9 +61,12 @@ jobs:
         run: |
           brew install fastlane;
           fastlane --version;
+      - name: xcode-select --install
+        run: xcode-select --install
       - name: Sync certificates
         run: |
           fastlane syncCertificates;
+          security find-identity -v -p codesigning;
           fastlane closed_beta;
 #      - name: Deploy iOS Beta to TestFlight via Fastlane
 #        uses: maierj/fastlane-action@v1.4.0
