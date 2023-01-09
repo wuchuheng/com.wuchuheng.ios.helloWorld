@@ -69,32 +69,8 @@ PROVISIONING_PROFILE_SPECIFIER = ENV["PROVISIONING_PROFILE_SPECIFIER"]
 TEMP_KEYCHAIN_USER = ENV["TEMP_KEYCHAIN_USER"]
 MATCH_PASSWORD = ENV["MATCH_PASSWORD"]
 
-def delete_temp_keychain(name)
-  delete_keychain(
-    name: name
-  ) if File.exist? File.expand_path("~/Library/Keychains/#{name}-db")
-end
-
-def create_temp_keychain(name, password)
-  create_keychain(
-    name: name,
-    password: password,
-    unlock: false,
-    timeout: 3600
-  )
-end
-
-def ensure_temp_keychain(name, password)
-  delete_temp_keychain(name)
-  create_temp_keychain(name, password)
-end
-
 platform :ios do
   lane :closed_beta do
-    keychain_name = TEMP_KEYCHAIN_USER
-    keychain_password = MATCH_PASSWORD
-    ensure_temp_keychain(keychain_name, keychain_password)
-
 #     match(
 #       type: 'appstore',
 #       app_identifier: "#{APP_IDENTIFIER}",
@@ -132,6 +108,5 @@ platform :ios do
 #     )
     build_app
     upload_to_testflight(skip_waiting_for_build_processing: true)
-    delete_temp_keychain(keychain_name)
   end
 end
