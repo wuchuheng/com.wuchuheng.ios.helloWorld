@@ -18,6 +18,7 @@ jobs:
         run: |
           envFile="fastlane/.env"
           cat >> $envFile  <<EOL
+
           GIT_AUTHORIZATION="${{ secrets.GIT_AUTHORIZATION }}"
           EOL
           cat $envFile
