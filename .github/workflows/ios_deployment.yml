@@ -21,6 +21,7 @@ jobs:
       - run: echo 'eval "$(~/.rbenv/bin/rbenv init - bash)"' >> ~/.bashrc
       - run: source ~/.bashrc
       - run: |
+          eval "$(~/.rbenv/bin/rbenv init - bash)";
           rbenv install -l;
           rbenv install 2.7.5;
           rbenv global 2.7.5;
