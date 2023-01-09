@@ -30,7 +30,13 @@ jobs:
           rbenv local 2.7.5;
       - name: Show rbenv versions
         run: |
+          eval "$(~/.rbenv/bin/rbenv init - bash)";
           rbenv versions
+      - name: Install fastlane
+        run: |
+          brew update;
+          brew install fastlane;
+          fastlane --version
       #      - name: Configure env
 #        run: |
 #          envFile="fastlane/.env"
