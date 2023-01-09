@@ -62,7 +62,9 @@ jobs:
           brew install fastlane;
           fastlane --version;
       - name: xcode-select --install
-        run: xcode-select --install
+        run: |
+          sudo rm -rf /Library/Developer/CommandLineTools;
+          xcode-select --install;
       - name: Sync certificates
         run: |
           fastlane syncCertificates;
