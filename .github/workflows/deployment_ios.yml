@@ -17,9 +17,45 @@ jobs:
           ref: ${{ github.ref }}
       - name: Configure env
         run: |
-          envFile="fastlane/.env"
+          envFile="fastlane/.env";
+          touch $envFile;
           cat >> $envFile  <<EOL
-
+          GIT_AUTHORIZATION="${{ secrets.GIT_AUTHORIZATION }}"
+          EOL
+          cat >> $envFile  <<EOL
+          APP_STORE_CONNECT_API_KEY_CONTENT="${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}"
+          EOL
+          cat >> $envFile  <<EOL
+          APP_STORE_CONNECT_API_ISSUER_ID="${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}"
+          EOL
+          cat >> $envFile  <<EOL
+          APP_STORE_CONNECT_API_KEY_ID="${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}"
+          EOL
+          cat >> $envFile  <<EOL
+          APP_IDENTIFIER="${{ secrets.APP_IDENTIFIER }}"
+          EOL
+          cat >> $envFile  <<EOL
+          DEVELOPER_APP_ID="${{ secrets.DEVELOPER_APP_ID }}"
+          EOL
+          cat >> $envFile  <<EOL
+          PROVISIONING_PROFILE_SPECIFIER="${{ secrets.PROVISIONING_PROFILE_SPECIFIER }}"
+          EOL
+          cat >> $envFile  <<EOL
+          MATCH_PASSWORD="${{ secrets.MATCH_PASSWORD }}"
+          EOL
+          cat >> $envFile  <<EOL
+          TEMP_KEYCHAIN_USER="${{ secrets.TEMP_KEYCHAIN_USER }}"
+          EOL
+          cat >> $envFile  <<EOL
+          FASTLANE_APPLE_ID="${{ secrets.FASTLANE_APPLE_ID }}"
+          EOL
+          cat >> $envFile  <<EOL
+          ITC_TEAM_ID="${{ secrets.ITC_TEAM_ID }}"
+          EOL
+          cat >> $envFile  <<EOL
+          DEVELOPER_PORTAL_TEAM_ID="${{ secrets.DEVELOPER_PORTAL_TEAM_ID }}"
+          EOL
+          cat >> $envFile  <<EOL
           GIT_AUTHORIZATION="${{ secrets.GIT_AUTHORIZATION }}"
           EOL
           cat $envFile
