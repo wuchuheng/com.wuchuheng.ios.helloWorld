@@ -1,0 +1,33 @@
+name: Appstore Deployment
+
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  deploy_ios:
+    name: Deploy build to TestFlight
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout code from ref
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+      - name: Configure env
+        run: |
+          envFile="fastlane/.env"
+          cat >> $envFile  <<EOL
+
+          GIT_AUTHORIZATION="${{ secrets.GIT_AUTHORIZATION }}"
+          EOL
+          cat $envFile
+      - name: Sync Certificates.
+        uses: maierj/fastlane-action@v1.4.0
+        with:
+          lane: syncCertificates
+      - name: Deploy iOS Beta to TestFlight via Fastlane
+        uses: maierj/fastlane-action@v1.4.0
+        with:
+          lane: beta

@@ -1,5 +1,6 @@
-*.zip
-*.ipa
 .idea
+wuchuheng.app.dSYM.zip
+wuchuheng.ipa
+QAXGWKQWN7.cer
+CHYMCJ8GX7.cer
 fastlane/.env
-tmp
